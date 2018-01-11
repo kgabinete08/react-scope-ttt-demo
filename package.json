@@ -1,0 +1,33 @@
+{
+  "name": "rs-ttt-demo",
+  "version": "1.0.0",
+  "description": "React Scope Demo App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "node server.js"
+  },
+  "author": "React Scope",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2",
+    "path": "^0.12.7",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.8",
+    "eslint": "^4.14.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
+    "style-loader": "^0.19.1",
+    "webpack": "^3.10.0"
+  }
+}
