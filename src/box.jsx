@@ -12,7 +12,11 @@ const Box = (props) => {
   }
 
   return (
-    <div className="box" onClick={() => props.onClick()}>{text}</div>
+    <div className="box" onClick={() => props.onClick()}>
+      <div id="text">
+        {text}
+      </div>
+    </div>
   );
 };
 

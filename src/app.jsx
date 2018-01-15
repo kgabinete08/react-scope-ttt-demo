@@ -9,7 +9,7 @@ class App extends Component {
       rows: [[null, null, null],
              [null, null, null],
              [null, null, null]],
-
+      winner: '',
       turn: true,
     };
 
@@ -25,8 +25,10 @@ class App extends Component {
     if (data[0][0] !== null && data[0][0] === data[0][1] && data[0][1] === data[0][2]) this.showWinner(data[0][0]);
     if (data[1][0] !== null && data[1][0] === data[1][1] && data[1][1] === data[1][2]) this.showWinner(data[1][0]);
     if (data[2][0] !== null && data[2][0] === data[2][1] && data[2][1] === data[2][2]) this.showWinner(data[2][0]);
+      
 
     if (data[0][0] !== null && data[0][0] === data[1][1] && data[1][1] === data[2][2]) this.showWinner(data[0][0]);
+    if (data[0][1] !== null && data[0][1] === data[1][1] && data[1][1] === data[2][1]) this.showWinner(data[0][1]);
     if (data[0][2] !== null && data[0][2] === data[1][1] && data[1][1] === data[2][0]) this.showWinner(data[0][2]);
   }
 
@@ -42,7 +44,14 @@ class App extends Component {
 
   showWinner(winner) {
     const winnerName = winner ? 'X' : 'O';
-    requestAnimationFrame(() => setTimeout(() => alert(`The winner is ${winnerName}`), 50));
+    const winnerText = `The winner is ${winnerName}!`;
+    const resetRows =  [
+      [null, null, null],
+      [null, null, null],
+      [null, null, null]
+    ];
+    // requestAnimationFrame(() => setTimeout(() => alert('winner'), 50));
+    this.setState({ winner: winnerText, rows: resetRows, turn: true });
   }
 
   render() {
@@ -50,6 +59,7 @@ class App extends Component {
       <div>
         <h1>Tic Tac Toe</h1>
         <Board data={this.state.rows} onClick={this.updateBox} />
+        <div id="result">{ this.state.winner }</div>
       </div>
     );
   }

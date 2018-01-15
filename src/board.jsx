@@ -8,7 +8,9 @@ const Board = (props) => {
   }
   return (
     <div>
-      {rows}
+      <div id="board">
+        {rows}
+      </div>
     </div>
   );
 };

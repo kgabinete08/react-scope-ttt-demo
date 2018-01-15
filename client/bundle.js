@@ -972,7 +972,7 @@ var App = function (_Component) {
 
     _this.state = {
       rows: [[null, null, null], [null, null, null], [null, null, null]],
-
+      winner: '',
       turn: true
     };
 
@@ -993,6 +993,7 @@ var App = function (_Component) {
       if (data[2][0] !== null && data[2][0] === data[2][1] && data[2][1] === data[2][2]) this.showWinner(data[2][0]);
 
       if (data[0][0] !== null && data[0][0] === data[1][1] && data[1][1] === data[2][2]) this.showWinner(data[0][0]);
+      if (data[0][1] !== null && data[0][1] === data[1][1] && data[1][1] === data[2][1]) this.showWinner(data[0][1]);
       if (data[0][2] !== null && data[0][2] === data[1][1] && data[1][1] === data[2][0]) this.showWinner(data[0][2]);
     }
   }, {
@@ -1012,11 +1013,10 @@ var App = function (_Component) {
     key: 'showWinner',
     value: function showWinner(winner) {
       var winnerName = winner ? 'X' : 'O';
-      requestAnimationFrame(function () {
-        return setTimeout(function () {
-          return alert('The winner is ' + winnerName);
-        }, 50);
-      });
+      var winnerText = 'The winner is ' + winnerName + '!';
+      var resetRows = [[null, null, null], [null, null, null], [null, null, null]];
+      // requestAnimationFrame(() => setTimeout(() => alert('winner'), 50));
+      this.setState({ winner: winnerText, rows: resetRows, turn: true });
     }
   }, {
     key: 'render',
@@ -1029,7 +1029,12 @@ var App = function (_Component) {
           null,
           'Tic Tac Toe'
         ),
-        _react2.default.createElement(_board2.default, { data: this.state.rows, onClick: this.updateBox })
+        _react2.default.createElement(_board2.default, { data: this.state.rows, onClick: this.updateBox }),
+        _react2.default.createElement(
+          'div',
+          { id: 'result' },
+          this.state.winner
+        )
       );
     }
   }]);
@@ -18383,7 +18388,11 @@ var Board = function Board(props) {
   return _react2.default.createElement(
     'div',
     null,
-    rows
+    _react2.default.createElement(
+      'div',
+      { id: 'board' },
+      rows
+    )
   );
 };
 
@@ -18465,7 +18474,11 @@ var Box = function Box(props) {
     { className: 'box', onClick: function onClick() {
         return props.onClick();
       } },
-    text
+    _react2.default.createElement(
+      'div',
+      { id: 'text' },
+      text
+    )
   );
 };
 
