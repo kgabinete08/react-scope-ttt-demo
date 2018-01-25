@@ -44,3 +44,7 @@ h1 {
   background-color: #fb5756;
 }
 
+.box:hover {
+  cursor: pointer;
+}
+
